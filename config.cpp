@@ -7,32 +7,25 @@
 
 using namespace std;
 
-Config loadConfig(const string &fileName) {
-  ifstream file(fileName);
-  if (!file.is_open()) {
-    cerr << "Could not open" << fileName << "\n";
-    exit(1);
-  }
-
-  unordered_map<string, string> config;
-  string line;
-  while (getline(file, line)) {
-    istringstream iss(line);
-    string key, value;
-    if (iss >> key >> value) {
-      config[key] = value;
-    }
-  }
-  file.close();
+Config loadConfig() {
 
   Config cfg{};
+  cout << "Enter maximum number of concurrent instances (n): ";
+  cin >> cfg.n;
 
-  cfg.n = stoi(config.at("n"));
-  cfg.t = stoi(config.at("t"));
-  cfg.h = stoi(config.at("h"));
-  cfg.d = stoi(config.at("t"));
-  cfg.t1 = stoi(config.at("t1"));
-  cfg.t2 = stoi(config.at("t2"));
+  cout << "Enter number of tank players in the queue (t): ";
+  cin >> cfg.t;
 
+  cout << "Enter number of healer players in the queue (h): ";
+  cin >> cfg.h;
+
+  cout << "Enter number of DPS players in the queue (d): ";
+  cin >> cfg.d;
+
+  cout << "Enter minimum time before an instance is finished (t1): ";
+  cin >> cfg.t1;
+
+  cout << "Enter maximum time before an instance is finished (t2): ";
+  cin >> cfg.t2;
   return cfg;
 }

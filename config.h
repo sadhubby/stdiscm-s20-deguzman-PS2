@@ -12,5 +12,5 @@ struct Config {
   int t2;
 };
 
-Config loadConfig(const std::string &filename);
+Config loadConfig();
 #endif
